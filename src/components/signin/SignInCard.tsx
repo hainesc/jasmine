@@ -8,11 +8,14 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Link from "@mui/material/Link";
+import { Alert } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import ForgotPassword from "./ForgotPassword";
+import { useAuth } from "../../auth/AuthContext";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
+import axios from "axios";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -33,12 +36,14 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
+  const signInUrl = "/api/auth/signin";
+  const [nameError, setNameError] = React.useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [errMsg, setErrMsg] = React.useState("");
   const [open, setOpen] = React.useState(false);
-
+  const { signIn } = useAuth();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -48,41 +53,47 @@ export default function SignInCard() {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
+    event.preventDefault();
+    if (nameError || passwordError) {
       return;
     }
+
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get("email"),
+      name: data.get("name"),
       password: data.get("password"),
     });
+    axios
+      .post(
+        signInUrl,
+        {
+          name: data.get("name"),
+          password: data.get("password"),
+        },
+        { timeout: 4000 }
+      )
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.access_token);
+        signIn(response.data.access_token, "", data.get("name") as string);
+      })
+      .catch((error) => {
+        let message = error.response.data?.message || error.message;
+        setErrMsg(message);
+        console.log(error);
+      });
   };
 
   const validateInputs = () => {
-    const email = document.getElementById("email") as HTMLInputElement;
+    const name = document.getElementById("name") as HTMLInputElement;
     const password = document.getElementById("password") as HTMLInputElement;
-
+    // TODO: validate the input of name.
     let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage("");
-    }
-
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage("Password must be at least 6 characters long.");
       isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage("");
     }
-
     return isValid;
   };
 
@@ -98,6 +109,16 @@ export default function SignInCard() {
       >
         Sign in
       </Typography>
+      {errMsg && (
+        <Alert
+          severity="error"
+          onClose={function () {
+            setErrMsg("");
+          }}
+        >
+          Oops, Something wents wrong: {errMsg}
+        </Alert>
+      )}
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -105,20 +126,25 @@ export default function SignInCard() {
         sx={{ display: "flex", flexDirection: "column", width: "100%", gap: 2 }}
       >
         <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="name">Username</FormLabel>
           <TextField
-            error={emailError}
-            helperText={emailErrorMessage}
-            id="email"
-            type="email"
-            name="email"
-            placeholder="your@email.com"
-            autoComplete="email"
+            error={nameError}
+            helperText={nameErrorMessage}
+            id="name"
+            type="name"
+            name="name"
+            placeholder="username"
             autoFocus
             required
             fullWidth
             variant="outlined"
-            color={emailError ? "error" : "primary"}
+            color={nameError ? "error" : "primary"}
+            onChange={function () {
+              if (nameError) {
+                setNameError(false);
+                setNameErrorMessage("");
+              }
+            }}
           />
         </FormControl>
         <FormControl>
@@ -147,6 +173,12 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={passwordError ? "error" : "primary"}
+            onChange={function () {
+              if (passwordError) {
+                setPasswordError(false);
+                setPasswordErrorMessage("");
+              }
+            }}
           />
         </FormControl>
         <FormControlLabel

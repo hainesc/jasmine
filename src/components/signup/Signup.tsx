@@ -21,7 +21,6 @@ import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
 import axios from "axios";
-import { stepButtonClasses } from "@mui/material";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -65,11 +64,6 @@ interface IDToken {
 export default function SignUp() {
   const submitURL = "/api/auth/signup";
   const verifyURL = "/api/auth/verify";
-  // The value in useState keeps stay when re-render, but will be reset
-  // when refresh the page. As you see, the name here will be assigned
-  // every re-render or refresh, the code which parse cookies will always
-  // exeucted, so don't useState for it. Another important point is, any
-  // value useState changes, will trigger re-render
   const [totp, setTotp] = React.useState("");
   const [name, setName] = React.useState("");
   const [signupSubmit, setSignupSubmit] = React.useState(false);
@@ -305,8 +299,10 @@ export default function SignUp() {
                 helperText={nameErrorMessage}
                 color={nameError ? "error" : "primary"}
                 onChange={function () {
-                  setNameError(false);
-                  setNameErrorMessage("");
+                  if (nameError) {
+                    setNameError(false);
+                    setNameErrorMessage("");
+                  }
                 }}
               />
             </FormControl>
@@ -324,8 +320,10 @@ export default function SignUp() {
                 helperText={emailErrorMessage}
                 color={passwordError ? "error" : "primary"}
                 onChange={function () {
-                  setEmailError(false);
-                  setEmailErrorMessage("");
+                  if (emailError) {
+                    setEmailError(false);
+                    setEmailErrorMessage("");
+                  }
                 }}
               />
             </FormControl>
@@ -344,8 +342,10 @@ export default function SignUp() {
                 helperText={passwordErrorMessage}
                 color={passwordError ? "error" : "primary"}
                 onChange={function () {
-                  setPasswordError(false);
-                  setPasswordErrorMessage("");
+                  if (passwordError) {
+                    setPasswordError(false);
+                    setPasswordErrorMessage("");
+                  }
                 }}
               />
             </FormControl>

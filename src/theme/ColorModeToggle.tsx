@@ -8,25 +8,33 @@ import Tooltip from "@mui/material/Tooltip";
 
 export default function ColorModeToggle(props: IconButtonOwnProps) {
   const { mode, systemMode, setMode } = useColorScheme();
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    if (mode === "light") {
-      console.log("mode is light");
-      setMode("system");
-    } else if (mode === "system") {
-      console.log("mode is system");
-      setMode("dark");
-    } else if (mode === "dark") {
-      console.log("mode is dark");
-      setMode("light");
+  /**
+   * Handles a click on the color mode toggle button.
+   *
+   * Toggles through the three color modes in order:
+   * 1. Light mode
+   * 2. System default mode
+   * 3. Dark mode
+   */
+  const handleClick = () => {
+    switch (mode) {
+      case "light":
+        // If the current mode is light, switch to the system default mode.
+        setMode("system");
+        break;
+      case "system":
+        // If the current mode is system default, switch to dark mode.
+        setMode("dark");
+        break;
+      case "dark":
+        // If the current mode is dark, switch back to light mode.
+        setMode("light");
+        break;
     }
-    // setAnchorEl(event.currentTarget);
   };
-  console.log(mode == null ? "mode is null" : mode);
-  console.log(systemMode == null ? "system mode is null" : systemMode);
+
   const resolvedMode =
     systemMode == null ? (mode == null ? "light" : mode) : "system";
-  console.log(resolvedMode);
-
   const icon = {
     system: <SettingsBrightnessIcon />,
     light: <LightModeIcon />,
