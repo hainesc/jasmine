@@ -1,5 +1,5 @@
-import { setRef } from "@mui/material";
 import axios from "axios";
+import Cookies from "universal-cookie";
 import React, {
   createContext,
   useContext,
@@ -30,8 +30,18 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
-    const refresh = localStorage.getItem("refresh");
-    if (refresh) {
+    // TODO: get refresh from cookie.
+    const cookies = new Cookies(null, { path: "/" });
+    let cookie = cookies.get("refresh_token");
+    const refreshToken = cookie == null ? null : (cookie as string);
+
+    if (!refreshToken) {
+      console.log(
+        "no refresh token, may be error here. delete it after debug."
+      );
+    }
+    if (refreshToken) {
+      console.log("try to get access token from refresh token");
       axios
         .post("/api/auth/refresh", {
           method: "POST",
