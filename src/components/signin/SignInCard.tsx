@@ -81,7 +81,7 @@ export default function SignInCard() {
         console.log(response.data.access_token);
         signIn(response.data.access_token, "", data.get("name") as string);
         // goto /profile page on success
-        navigate("/profile");
+        navigate("/dashboard");
       })
       .catch((error) => {
         let message = error.response.data?.message || error.message;

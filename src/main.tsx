@@ -19,18 +19,14 @@ ReactDOM.createRoot(root).render(
       <Routes>
         <Route path="/" element={<Branding />} />
         <Route path="/signup" element={<SignUp />} />
-        <AuthSwitch
-          path="/dashboard"
-          authorized={true}
-          redirect="/signin"
-          element={<Dashboard />}
-        />
-        <AuthSwitch
-          path="/signin"
-          authorized={false}
-          redirect="/dashboard"
-          element={<SignIn />}
-        />
+        <Route element={<AuthSwitch authorized={true} redirect="/signin" />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route
+          element={<AuthSwitch authorized={false} redirect="/dashboard" />}
+        >
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </AuthProvider>
