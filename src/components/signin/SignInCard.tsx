@@ -16,6 +16,9 @@ import ForgotPassword from "./ForgotPassword";
 import { useAuth } from "../../auth/AuthContext";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
 import axios from "axios";
+import { useNavigate } from "react-router";
+
+// import { Navigate } from "react-router";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -43,6 +46,7 @@ export default function SignInCard() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [errMsg, setErrMsg] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   const { signIn } = useAuth();
   const handleClickOpen = () => {
     setOpen(true);
@@ -76,6 +80,8 @@ export default function SignInCard() {
         console.log(response);
         console.log(response.data.access_token);
         signIn(response.data.access_token, "", data.get("name") as string);
+        // goto /profile page on success
+        navigate("/profile");
       })
       .catch((error) => {
         let message = error.response.data?.message || error.message;
@@ -197,7 +203,7 @@ export default function SignInCard() {
         <Typography sx={{ textAlign: "center" }}>
           Don&apos;t have an account?{" "}
           <span>
-            <Link href="/signup/" variant="body2" sx={{ alignSelf: "center" }}>
+            <Link href="/signup" variant="body2" sx={{ alignSelf: "center" }}>
               Sign up
             </Link>
           </span>

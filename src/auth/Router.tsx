@@ -1,25 +1,13 @@
-import React from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-  RouteProps,
-  PathRouteProps,
-} from "react-router";
+import { Navigate, Outlet, PathRouteProps } from "react-router";
 
-import AuthContext, { useAuth } from "./AuthContext";
+import { useAuth } from "./AuthContext";
 
-interface AuthorizedRouteProps extends PathRouteProps {
-  component: React.ComponentType<any>;
-}
-
-interface AuthSwitchProps {
+interface AuthSwitchProps extends PathRouteProps {
   authorized?: boolean;
   redirect?: string;
 }
 
-function AuthSwitch({ authorized, redirect }: AuthSwitchProps) {
+export function AuthSwitch({ authorized, redirect }: AuthSwitchProps) {
   let { accessToken } = useAuth();
   return accessToken && authorized ? (
     <Outlet />
@@ -27,14 +15,3 @@ function AuthSwitch({ authorized, redirect }: AuthSwitchProps) {
     <Navigate to={redirect || "/"} replace={true} />
   );
 }
-export const AuthorizedRoute: React.FC<AuthorizedRouteProps> = function ({
-  component: Component,
-  ...rest
-}: AuthorizedRouteProps) {
-  let auth = useAuth();
-  return auth.isAuthenticated ? (
-    <Component {...rest} />
-  ) : (
-    <Navigate to="/signin" replace={true} />
-  );
-};

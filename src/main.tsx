@@ -9,9 +9,8 @@ import Branding from "./components/branding/Branding.tsx";
 import SignUp from "./components/signup/Signup.tsx";
 import SignIn from "./components/signin/Signin.tsx";
 import Dashboard from "./components/dashboard/Dashboard.tsx";
-import Test from "./components/test/test.tsx";
-import AuthT from "./auth/AuthT.tsx";
 import AuthProvider from "./auth/AuthContext.tsx";
+import { AuthSwitch } from "./auth/Router.tsx";
 
 const root = document.getElementById("root")!;
 ReactDOM.createRoot(root).render(
@@ -20,13 +19,21 @@ ReactDOM.createRoot(root).render(
       <Routes>
         <Route path="/" element={<Branding />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route element={<AuthT b={false} />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-        <Route path="/signin" element={<SignIn />} />
-
-        <Route path="/test" element={<Test />} />
+        <AuthSwitch
+          path="/dashboard"
+          authorized={true}
+          redirect="/signin"
+          element={<Dashboard />}
+        />
+        <AuthSwitch
+          path="/signin"
+          authorized={false}
+          redirect="/dashboard"
+          element={<SignIn />}
+        />
       </Routes>
     </BrowserRouter>
   </AuthProvider>
 );
+// <Route path="/dashboard" element={<Dashboard />} />
+// <Route path="/signin" element={<SignIn />} />
