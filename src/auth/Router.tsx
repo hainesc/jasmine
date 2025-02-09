@@ -7,6 +7,7 @@ interface AuthSwitchProps {
   redirect?: string;
 }
 
+// Rename it to Guard
 export function AuthSwitch({ authorized, redirect }: AuthSwitchProps) {
   let { accessToken } = useAuth();
   if (authorized) {

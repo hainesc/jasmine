@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { palette } from "./Palette";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
+// TODO: delete it and just use children in Theme.
 interface ThemeProps {
   children: React.ReactNode;
 }

@@ -31,5 +31,3 @@ ReactDOM.createRoot(root).render(
     </BrowserRouter>
   </AuthProvider>
 );
-// <Route path="/dashboard" element={<Dashboard />} />
-// <Route path="/signin" element={<SignIn />} />
