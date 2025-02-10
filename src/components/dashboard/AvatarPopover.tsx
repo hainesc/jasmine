@@ -15,9 +15,6 @@ import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import IconButton from "@mui/material/IconButton";
 import MenuItem, { menuItemClasses } from "@mui/material/MenuItem";
 
-// import { useRouter, usePathname } from 'src/routes/hooks';
-
-// ----------------------------------------------------------------------
 export const _myAccount = {
   displayName: "Jaydon Frankie",
   email: "demo@minimals.cc",
@@ -54,9 +51,6 @@ export function AvatarPopover({
   sx,
   ...other
 }: AccountPopoverProps) {
-  // const router = useRouter();
-  // const pathname = usePathname();
-
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(
     null
   );

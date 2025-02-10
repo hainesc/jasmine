@@ -11,15 +11,16 @@ import Header from "../common/Header";
 import MainGrid from "./MainGrid";
 import SideMenu from "./SideMenu";
 import Theme from "../../theme/Theme";
+import Navigation from "./Navigation";
 
 export default function Dashboard() {
   return (
     <Theme>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: "flex" }}>
-        <SideMenu />
-        <AppNavbar />
-        {/* Main content */}
+        <Navigation />
+
+        {/* Main content <AppNavbar /> */}
         <Box
           component="main"
           sx={(theme) => ({

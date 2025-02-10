@@ -1,10 +1,8 @@
 import Stack from "@mui/material/Stack";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
-import CustomDatePicker from "./CustomDatePicker";
 import NavbarBreadcrumbs from "./NavbarBreadcrumbs";
 import MenuButton from "./MenuButton";
 import ColorModeToggle from "../../theme/ColorModeToggle";
-// import ColorModeSelect  from '../../theme/ColorModeSelect';
 import Search from "../dashboard/Search";
 import { AvatarPopover } from "../dashboard/AvatarPopover";
 
@@ -13,7 +11,7 @@ export default function Header() {
     <Stack
       direction="row"
       sx={{
-        display: { xs: "none", md: "flex" },
+        display: "flex",
         width: "100%",
         alignItems: { xs: "flex-start", md: "center" },
         justifyContent: "space-between",
@@ -25,7 +23,6 @@ export default function Header() {
       <NavbarBreadcrumbs />
       <Stack direction="row" sx={{ gap: 1 }}>
         <Search />
-        <CustomDatePicker />
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
