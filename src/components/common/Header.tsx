@@ -6,6 +6,7 @@ import MenuButton from "./MenuButton";
 import ColorModeToggle from "../../theme/ColorModeToggle";
 // import ColorModeSelect  from '../../theme/ColorModeSelect';
 import Search from "../dashboard/Search";
+import { AvatarPopover } from "../dashboard/AvatarPopover";
 
 export default function Header() {
   return (
@@ -29,6 +30,7 @@ export default function Header() {
           <NotificationsRoundedIcon />
         </MenuButton>
         <ColorModeToggle />
+        <AvatarPopover />
       </Stack>
     </Stack>
   );

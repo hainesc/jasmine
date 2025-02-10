@@ -11,6 +11,7 @@ import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import SideMenuMobile from "./SideMenuMobile";
 import MenuButton from "../common/MenuButton";
 import ColorModeToggle from "../../theme/ColorModeToggle";
+import { AvatarPopover } from "./AvatarPopover";
 
 const Toolbar = styled(MuiToolbar)({
   width: "100%",
@@ -73,9 +74,11 @@ export default function AppNavbar() {
             </Typography>
           </Stack>
           <ColorModeToggle />
+          <AvatarPopover />
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
+
           <SideMenuMobile open={open} toggleDrawer={toggleDrawer} />
         </Stack>
       </Toolbar>

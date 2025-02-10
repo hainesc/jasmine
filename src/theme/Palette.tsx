@@ -17,7 +17,7 @@ export const palette = {
       },
       background: {
         default: "#f7faf8",
-        paper: "##ebefec",
+        paper: "#ebefec",
       },
       error: {
         main: "#ba1a1a",

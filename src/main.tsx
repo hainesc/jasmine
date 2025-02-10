@@ -19,9 +19,8 @@ ReactDOM.createRoot(root).render(
       <Routes>
         <Route path="/" element={<Branding />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route element={<AuthSwitch authorized={true} redirect="/signin" />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           element={<AuthSwitch authorized={false} redirect="/dashboard" />}
         >
@@ -31,3 +30,8 @@ ReactDOM.createRoot(root).render(
     </BrowserRouter>
   </AuthProvider>
 );
+/*
+ <Route element={<AuthSwitch authorized={true} redirect="/signin" />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        */

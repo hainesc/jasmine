@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
@@ -52,16 +53,36 @@ export default function AppAppBar() {
           >
             <Sitemark />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <Button variant="text" color="primary" size="small">
+              <Button
+                variant="text"
+                color="primary"
+                size="small"
+                href="#features"
+              >
                 Features
               </Button>
-              <Button variant="text" color="primary" size="small">
+              <Button
+                variant="text"
+                color="primary"
+                size="small"
+                href="#testimonials"
+              >
                 Testimonials
               </Button>
-              <Button variant="text" color="primary" size="small">
+              <Button
+                variant="text"
+                color="primary"
+                size="small"
+                href="#highlights"
+              >
                 Highlights
               </Button>
-              <Button variant="text" color="primary" size="small">
+              <Button
+                variant="text"
+                color="primary"
+                size="small"
+                href="#pricing"
+              >
                 Pricing
               </Button>
               <Button
@@ -69,6 +90,7 @@ export default function AppAppBar() {
                 color="primary"
                 size="small"
                 sx={{ minWidth: 0 }}
+                href="#faq"
               >
                 FAQ
               </Button>
@@ -124,11 +146,31 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
+                <MenuItem role="none">
+                  <Link role="menuitem" underline="none" href="#features">
+                    Features
+                  </Link>
+                </MenuItem>
+                <MenuItem role="none">
+                  <Link role="menuitem" underline="none" href="#testimonials">
+                    Testimonials
+                  </Link>
+                </MenuItem>
+                <MenuItem role="none">
+                  <Link role="menuitem" underline="none" href="#highlights">
+                    Highlights
+                  </Link>
+                </MenuItem>
+                <MenuItem role="none">
+                  <Link role="menuitem" underline="none" href="#pricing">
+                    Pricing
+                  </Link>
+                </MenuItem>
+                <MenuItem role="none">
+                  <Link role="menuitem" underline="none" href="#faq">
+                    FAQ
+                  </Link>
+                </MenuItem>
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
