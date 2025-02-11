@@ -30,7 +30,6 @@ const StyledBox = styled("div")(({ theme }) => ({
     boxShadow: "0 0 24px 12px hsla(210, 100%, 25%, 0.2)",
     backgroundImage: `url(https://mui.com/static/screenshots/material-ui/getting-started/templates/dashboard-dark.jpg)`,
     outlineColor: "hsla(220, 20%, 42%, 0.1)",
-    // borderColor: theme.palette.grey[700],
   }),
 }));
 

@@ -9,15 +9,15 @@ import Stack from "@mui/material/Stack";
 import Header from "../common/Header";
 import MainGrid from "./MainGrid";
 import Theme from "../../theme/Theme";
-import Navigation from "./Navigation";
+import Sidebar from "./Sidebar";
+import AppAppBar from "./AppAppBar";
 
 export default function Dashboard() {
   return (
     <Theme>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: "flex" }}>
-        <Navigation />
-
+        <AppAppBar />
         <Box
           component="main"
           sx={(theme) => ({
@@ -35,7 +35,6 @@ export default function Dashboard() {
               mt: { xs: 8, md: 0 },
             }}
           >
-            <Header />
             <MainGrid />
           </Stack>
         </Box>
