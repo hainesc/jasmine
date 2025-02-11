@@ -6,10 +6,8 @@ import { alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import AppNavbar from "./AppNavbar";
 import Header from "../common/Header";
 import MainGrid from "./MainGrid";
-import SideMenu from "./SideMenu";
 import Theme from "../../theme/Theme";
 import Navigation from "./Navigation";
 
@@ -20,7 +18,6 @@ export default function Dashboard() {
       <Box sx={{ display: "flex" }}>
         <Navigation />
 
-        {/* Main content <AppNavbar /> */}
         <Box
           component="main"
           sx={(theme) => ({
