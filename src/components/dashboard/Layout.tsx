@@ -28,8 +28,12 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-// TODO: make a children props
-export default function Layout({ children }: React.ReactNode) {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout(props: LayoutProps) {
+  const { children } = props;
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const mixins = theme.mixins["toolbar"];
@@ -71,20 +75,21 @@ export default function Layout({ children }: React.ReactNode) {
           </Stack>
         </StyledToolbar>
       </AppBar>
-
-      <Box
-        sx={{
-          position: "sticky",
-          maxWidth: "20%",
-        }}
-      >
-        {(!small && <MenuContent />) || (
-          <Drawer open={open} onClose={() => setOpen(false)}>
-            <MenuContent />
-          </Drawer>
-        )}
-      </Box>
-      {children}
+      <Stack direction="row">
+        <Box
+          sx={{
+            position: "sticky",
+            maxWidth: "20%",
+          }}
+        >
+          {(!small && <MenuContent />) || (
+            <Drawer open={open} onClose={() => setOpen(false)}>
+              <MenuContent />
+            </Drawer>
+          )}
+        </Box>
+        {children}
+      </Stack>
     </Stack>
   );
 }

@@ -15,7 +15,7 @@ export default function Dashboard() {
     <Theme>
       <CssBaseline enableColorScheme />
       <Layout>
-        <Box sx={{ display: "sticky", mt: "64px", ml: "280px" }}>
+        <Box sx={{ display: "sticky" }}>
           <Box
             component="main"
             sx={(theme) => ({
