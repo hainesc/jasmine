@@ -6,39 +6,38 @@ import { alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Header from "../common/Header";
 import MainGrid from "./MainGrid";
 import Theme from "../../theme/Theme";
-import Sidebar from "./Sidebar";
-import AppAppBar from "./AppAppBar";
+import Layout from "./Layout";
 
 export default function Dashboard() {
   return (
     <Theme>
       <CssBaseline enableColorScheme />
-      <Box sx={{ display: "flex" }}>
-        <AppAppBar />
-        <Box
-          component="main"
-          sx={(theme) => ({
-            flexGrow: 1,
-            backgroundColor: alpha(theme.palette.background.default, 1),
-            overflow: "auto",
-          })}
-        >
-          <Stack
-            spacing={2}
-            sx={{
-              alignItems: "center",
-              mx: 3,
-              pb: 5,
-              mt: { xs: 8, md: 0 },
-            }}
+      <Layout>
+        <Box sx={{ display: "sticky", mt: "64px", ml: "280px" }}>
+          <Box
+            component="main"
+            sx={(theme) => ({
+              flexGrow: 1,
+              backgroundColor: alpha(theme.palette.background.default, 1),
+              overflow: "auto",
+            })}
           >
-            <MainGrid />
-          </Stack>
+            <Stack
+              spacing={2}
+              sx={{
+                alignItems: "center",
+                mx: 3,
+                pb: 5,
+                mt: { xs: 8, md: 0 },
+              }}
+            >
+              <MainGrid />
+            </Stack>
+          </Box>
         </Box>
-      </Box>
+      </Layout>
     </Theme>
   );
 }

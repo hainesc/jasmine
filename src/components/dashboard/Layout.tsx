@@ -3,17 +3,12 @@ import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
-import Divider from "@mui/material/Divider";
-import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ColorModeToggle from "../../theme/ColorModeToggle";
 import Sitemark from "../branding/SitemarkIcon";
-import { Container, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { AvatarPopover } from "./AvatarPopover";
 import Search from "./Search";
 import { useMediaQuery } from "@mui/material";
@@ -33,24 +28,24 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-export default function AppAppBar() {
+// TODO: make a children props
+export default function Layout({ children }: React.ReactNode) {
   const [open, setOpen] = React.useState(false);
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
   const theme = useTheme();
+  const mixins = theme.mixins["toolbar"];
+  console.log(mixins);
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // TODO: change css display none to react condition rendering
   return (
     <Stack spacing={0}>
       <AppBar
-        position="fixed"
+        position="sticky"
         enableColorOnDark
         sx={{
           boxShadow: 0,
           bgcolor: "transparent",
           backgroundImage: "none",
+          width: "100vw",
         }}
       >
         <StyledToolbar variant="dense" disableGutters>
@@ -79,12 +74,8 @@ export default function AppAppBar() {
 
       <Box
         sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          pt: { xs: 4, sm: 6 },
-          gap: { xs: 3, sm: 6 },
+          position: "sticky",
+          maxWidth: "20%",
         }}
       >
         {(!small && <MenuContent />) || (
@@ -93,6 +84,7 @@ export default function AppAppBar() {
           </Drawer>
         )}
       </Box>
+      {children}
     </Stack>
   );
 }

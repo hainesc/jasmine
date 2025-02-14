@@ -12,6 +12,7 @@ import Dashboard from "./components/dashboard/Dashboard.tsx";
 import AuthProvider from "./auth/AuthContext.tsx";
 import { AuthSwitch } from "./auth/Router.tsx";
 import Sidebar from "./components/dashboard/Sidebar.tsx";
+import DashboardLayout from "./components/test/DashboardLayout.tsx";
 
 const root = document.getElementById("root")!;
 ReactDOM.createRoot(root).render(
@@ -20,8 +21,9 @@ ReactDOM.createRoot(root).render(
       <Routes>
         <Route path="/" element={<Branding />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/test" element={<Sidebar />} />
+        <Route path="/test" element={<DashboardLayout />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
         <Route
           element={<AuthSwitch authorized={false} redirect="/dashboard" />}
         >
