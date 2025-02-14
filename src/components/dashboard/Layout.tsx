@@ -41,7 +41,7 @@ export default function Layout(props: LayoutProps) {
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Stack spacing={0}>
+    <>
       <AppBar
         position="sticky"
         enableColorOnDark
@@ -78,7 +78,7 @@ export default function Layout(props: LayoutProps) {
       <Stack direction="row">
         <Box
           sx={{
-            position: "sticky",
+            position: "fixed",
             maxWidth: "20%",
           }}
         >
@@ -88,8 +88,14 @@ export default function Layout(props: LayoutProps) {
             </Drawer>
           )}
         </Box>
-        {children}
+        <Box
+          sx={{
+            ml: small ? 0 : "20%",
+          }}
+        >
+          {children}
+        </Box>
       </Stack>
-    </Stack>
+    </>
   );
 }
