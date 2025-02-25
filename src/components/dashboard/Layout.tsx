@@ -16,7 +16,7 @@ import { useTheme } from "@mui/material/styles";
 import MenuContent from "./MenuContent";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  display: "flex",
+  display: "sticky",
   alignItems: "center",
   justifyContent: "space-between",
   flexShrink: 0,
@@ -39,10 +39,14 @@ export default function Layout(props: LayoutProps) {
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Stack direction={"column"} sx={{ position: "fixed" }}>
+    <Stack direction={"column"} sx={{ position: "sticky" }}>
       <AppBar
         enableColorOnDark
         sx={{
+          // Don't use sticky here since there is a bug the blur
+          // may does not take effect sometimes.
+          // But if we used fixed, we have to make a margin top
+          // for the page below
           position: "sticky",
           boxShadow: 0,
           bgcolor: "transparent",
@@ -109,6 +113,7 @@ export default function Layout(props: LayoutProps) {
           <Card sx={{ position: "relative", overflowY: "auto" }}>
             <p>Test</p>
           </Card>
+
           {(!small && <MenuContent />) || (
             <Drawer open={open} onClose={() => setOpen(false)}>
               <MenuContent />
