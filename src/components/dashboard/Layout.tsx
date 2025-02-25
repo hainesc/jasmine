@@ -39,7 +39,7 @@ export default function Layout(props: LayoutProps) {
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Stack direction={"column"} sx={{ position: "sticky" }}>
+    <Stack direction={"column"} sx={{ position: "fixed" }}>
       <AppBar
         enableColorOnDark
         sx={{
@@ -74,23 +74,39 @@ export default function Layout(props: LayoutProps) {
           </Stack>
         </StyledToolbar>
       </AppBar>
-      <Stack
-        direction="row"
-        sx={{
-          position: "sticky",
-          overflowY: "scroll",
-        }}
-      >
+      <Stack direction="row">
         <Box
           sx={{
             position: "sticky",
             maxWidth: "20%",
-            overflowY: "scroll",
-            height: "200px",
+            minWidth: "20%",
+            overflowY: "auto",
+            height: "100vh",
             top: 0,
           }}
         >
-          <Card sx={{ position: "sticky", overflowY: "auto" }}>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
+          <Card sx={{ position: "relative", overflowY: "auto" }}>
             <p>Test</p>
           </Card>
           {(!small && <MenuContent />) || (
@@ -102,7 +118,8 @@ export default function Layout(props: LayoutProps) {
         <Divider orientation="vertical" flexItem />
         <Box
           sx={{
-            ml: small ? 0 : 0,
+            overflowY: "scroll",
+            height: "100vh",
           }}
         >
           {children}
