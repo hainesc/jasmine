@@ -2,13 +2,13 @@ import { Navigate, Outlet } from "react-router";
 
 import { useAuth } from "./AuthContext";
 
-interface AuthSwitchProps {
+interface GuardProps {
   authorized: boolean;
   redirect?: string;
 }
 
 // Rename it to Guard
-export function AuthSwitch({ authorized, redirect }: AuthSwitchProps) {
+export function Guard({ authorized, redirect }: GuardProps) {
   let { accessToken } = useAuth();
   if (authorized) {
     return accessToken ? (

@@ -8,7 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import ColorModeToggle from "../../theme/ColorModeToggle";
 import Sitemark from "../branding/SitemarkIcon";
-import { Stack } from "@mui/material";
+import { Card, Divider, Stack } from "@mui/material";
 import { AvatarPopover } from "./AvatarPopover";
 import Search from "./Search";
 import { useMediaQuery } from "@mui/material";
@@ -36,16 +36,14 @@ export default function Layout(props: LayoutProps) {
   const { children } = props;
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const mixins = theme.mixins["toolbar"];
-  console.log(mixins);
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
+    <Stack direction={"column"} sx={{ position: "sticky" }}>
       <AppBar
-        position="sticky"
         enableColorOnDark
         sx={{
+          position: "sticky",
           boxShadow: 0,
           bgcolor: "transparent",
           backgroundImage: "none",
@@ -70,32 +68,46 @@ export default function Layout(props: LayoutProps) {
           </Box>
           <Stack direction="row" sx={{ gap: 1 }}>
             <Search />
+            <Divider orientation="vertical" flexItem />
             <ColorModeToggle />
             <AvatarPopover />
           </Stack>
         </StyledToolbar>
       </AppBar>
-      <Stack direction="row">
+      <Stack
+        direction="row"
+        sx={{
+          position: "sticky",
+          overflowY: "scroll",
+        }}
+      >
         <Box
           sx={{
-            position: "fixed",
+            position: "sticky",
             maxWidth: "20%",
+            overflowY: "scroll",
+            height: "200px",
+            top: 0,
           }}
         >
+          <Card sx={{ position: "sticky", overflowY: "auto" }}>
+            <p>Test</p>
+          </Card>
           {(!small && <MenuContent />) || (
             <Drawer open={open} onClose={() => setOpen(false)}>
               <MenuContent />
             </Drawer>
           )}
         </Box>
+        <Divider orientation="vertical" flexItem />
         <Box
           sx={{
-            ml: small ? 0 : "20%",
+            ml: small ? 0 : 0,
           }}
         >
           {children}
         </Box>
       </Stack>
-    </>
+    </Stack>
   );
 }

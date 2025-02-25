@@ -1,4 +1,3 @@
-import * as React from "react";
 import DarkModeIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeIcon from "@mui/icons-material/LightModeRounded";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightnessRounded";
@@ -41,19 +40,17 @@ export default function ColorModeToggle(props: IconButtonOwnProps) {
     dark: <DarkModeIcon />,
   }[resolvedMode];
   return (
-    <React.Fragment>
-      <Tooltip title="Switch color mode">
-        <IconButton
-          data-screenshot="toggle-mode"
-          onClick={handleClick}
-          disableRipple
-          size="small"
-          aria-haspopup="true"
-          {...props}
-        >
-          {icon}
-        </IconButton>
-      </Tooltip>
-    </React.Fragment>
+    <Tooltip title="Switch color mode">
+      <IconButton
+        data-screenshot="toggle-mode"
+        onClick={handleClick}
+        disableRipple
+        size="small"
+        aria-haspopup="true"
+        {...props}
+      >
+        {icon}
+      </IconButton>
+    </Tooltip>
   );
 }

@@ -10,8 +10,7 @@ import SignUp from "./components/signup/Signup.tsx";
 import SignIn from "./components/signin/Signin.tsx";
 import Dashboard from "./components/dashboard/Dashboard.tsx";
 import AuthProvider from "./auth/AuthContext.tsx";
-import { AuthSwitch } from "./auth/Router.tsx";
-import Sidebar from "./components/dashboard/Sidebar.tsx";
+import { Guard } from "./auth/Guard.tsx";
 import DashboardLayout from "./components/test/DashboardLayout.tsx";
 
 const root = document.getElementById("root")!;
@@ -21,18 +20,39 @@ ReactDOM.createRoot(root).render(
       <Routes>
         <Route path="/" element={<Branding />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/test" element={<DashboardLayout />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route
-          element={<AuthSwitch authorized={false} redirect="/dashboard" />}
-        >
+        <Route element={<Guard authorized={false} redirect="/dashboard" />}>
           <Route path="/signin" element={<SignIn />} />
         </Route>
+        <Route
+          path="/layout"
+          element={
+            <DashboardLayout
+              children={
+                <>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                  <h1>abc</h1>
+                </>
+              }
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   </AuthProvider>
 );
+
 /*
  <Route element={<AuthSwitch authorized={true} redirect="/signin" />}>
           <Route path="/dashboard" element={<Dashboard />} />
