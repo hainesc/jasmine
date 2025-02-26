@@ -147,7 +147,7 @@ export default function SignUp() {
     return isValid;
   };
 
-  const handleCode = (event: React.FormEvent<HTMLElement>) => {
+  const handleCode = (event: React.FormEvent<HTMLFormElement>) => {
     if (codeError) {
       event.preventDefault();
       return;
