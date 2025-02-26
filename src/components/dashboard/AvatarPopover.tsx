@@ -21,7 +21,7 @@ export const _myAccount = {
   photoURL: "/assets/images/avatar/avatar-25.webp",
 };
 
-export type AccountPopoverProps = IconButtonProps & {
+export type AvatarPopoverProps = IconButtonProps & {
   data?: {
     label: string;
     href: string;
@@ -50,7 +50,7 @@ export function AvatarPopover({
   ],
   sx,
   ...other
-}: AccountPopoverProps) {
+}: AvatarPopoverProps) {
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(
     null
   );
